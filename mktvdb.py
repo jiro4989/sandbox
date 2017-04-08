@@ -114,7 +114,7 @@ def mk_constructor_args_string(dictionary):
     str = ''
     length = len(dictionary)
     for (i, dct) in zip(range(length), dictionary):
-        str += '    %s, %s' % (dct.arg_type, dct.arg_var)
+        str += '    %s %s' % (dct.arg_type, dct.arg_var)
         if i < length - 1:
             str += \
                     """,
