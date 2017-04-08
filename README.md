@@ -7,7 +7,7 @@ JavaFXのTableViewで使用するレコードクラスを作成するスクリ�
 ### 使い方
 
 ```
-user@pc $ python mktvdb.py app DB id:i name:s usable:b
+user@pc $ python mktvdb.py app DB id:i name:s usable:b > DB.java
 ```
 
 - args[1] : パッケージ名
