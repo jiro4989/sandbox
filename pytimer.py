@@ -6,6 +6,33 @@ from sys import stdout
 import time
 import sys
 
+import pyaudio
+import wave
+
+CHUNK = 1024
+filename = './audio/lu.wav'
+
+wf = wave.open(filename, 'rb')
+
+p = pyaudio.PyAudio()
+
+stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                channels=wf.getnchannels(),
+                rate=wf.getframerate(),
+                output=True)
+
+# 1024個読み取り
+data = wf.readframes(CHUNK)
+
+while data != '':
+    stream.write(data)          # ストリームへの書き込み(バイナリ)
+    data = wf.readframes(CHUNK) # ファイルから1024個*2個の
+
+stream.stop_stream()
+stream.close()
+
+p.terminate()
+
 if len(sys.argv) < 2:
 	print(u'コマンドライン引数が不足しています。')
 	print(u'args[1] = time.csv')
