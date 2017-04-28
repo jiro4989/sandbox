@@ -1,25 +1,26 @@
 # start
-8:30,audio/lu.wav
-8:40,audio/lu.wav
-9:20,audio/lu.wav
-9:30,audio/lu.wav
-10:20,audio/lu.wav
-10:30,audio/lu.wav
-11:20,audio/lu.wav
-11:30,audio/lu.wav
+8:30,audio/lu.wav,Evr
+8:40,audio/lu.wav,Evr
+9:20,audio/lu.wav,Evr
+9:30,audio/lu.wav,Evr
+10:20,audio/lu.wav,Evr
+10:30,audio/lu.wav,Evr
+11:20,audio/lu.wav,Evr
+11:30,audio/lu.wav,Evr
 
 # lunch
-12:30,audio/lu.wav
+12:30,audio/lu.wav,Evr
 
-13:20,audio/lu.wav
-13:30,audio/lu.wav
-14:20,audio/lu.wav
-14:30,audio/lu.wav
-15:20,audio/lu.wav
-15:30,audio/lu.wav
-16:20,audio/lu.wav
-16:30,audio/lu.wav
+13:20,audio/lu.wav,Evr
+13:30,audio/lu.wav,Evr
+14:20,audio/lu.wav,Evr
+14:30,audio/lu.wav,Evr
+15:20,audio/lu.wav,Evr
+15:30,audio/lu.wav,Evr
+16:20,audio/lu.wav,Evr
+16:30,audio/lu.wav,Evr
 
 # end
-17:00,audio/lu.wav
-17:30,audio/lu.wav
+17:00,audio/lu.wav,Evr
+17:20,audio/lu.wav,Tue
+17:30,audio/lu.wav,Evr

@@ -1,13 +1,45 @@
 # coding: utf-8
 
-from datetime import datetime
-from time import sleep
-from sys import stdout
-import time
-import sys
-import re
+u"""
+
+タイマースクリプト。
+タイマーテキストファイルの時間と音声ファイルの情報から
+自動で次のタイマーをセットし、指定の時間に音楽を鳴らす。
+
+読み込むタイマーテキストファイルの書式はcsvをベースにしている。
+書式は下記のとおり.
+
+------
+
+# comment (ignore)
+mm:ss,wavfile,date
+
+------
+
+::: 注意点 :::
+
+1. 時間の書式はmm:ssで、カンマや数値の間に空白の混入を認めない。
+2. インラインコメントは不可
+
+特殊な機能として、特定の曜日にのみタイマーを鳴らせる。
+タイマー実行時の曜日と、テキストデータの中に存在する曜日が一致するもののみ、鳴ら
+す。
+
+曜日の一覧は以下の通り
+
+['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Son', 'Evr']
+
+"""
+
 import pyaudio
 import wave
+
+from datetime import datetime
+from sys import stdout
+from time import sleep
+import re
+import sys
+import time
 
 u"""
 引数のチェック
@@ -21,6 +53,7 @@ if len(sys.argv) < 2:
 	exit()
 
 CHUNK = 1024
+WEEKS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Son', 'Evr']
 
 u"""
 渡されたwavファイルを鳴らす
@@ -102,10 +135,16 @@ def mk_time_text(hour, minute, second):
 MINUTE = 60
 HOUR   = 60 * MINUTE
 
+weekindex = datetime.today().weekday()
+week = WEEKS[weekindex]
+
 # csvファイルからタイマーのタイミングを読み込み
+# 毎日、あるいは今日の曜日のデータが存在するもののみをフィルタリング
 timelines = open(sys.argv[1], 'r').readlines()
 timelines = [l for l in timelines if not l.startswith('#')]
 timelines = [l for l in timelines if not re.match('^$', l)]
+timelines = [l for l in timelines if l.split(',')[2].rfind(WEEKS[-1]) != -1 \
+		or l.split(',')[2].rfind(week) != -1]
 csv = [l.split(',') for l in timelines]
 
 # 時刻を取得
@@ -121,6 +160,7 @@ while True:
 	nowtime = nowtime.timetuple()
 	nowtime = time.mktime(nowtime)
 
+	# hh:mm:ssの取得
 	diff   = nexttime - nowtime
 	hour   = int(  diff / HOUR)
 	minute = int(( diff % HOUR) / MINUTE)
