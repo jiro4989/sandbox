@@ -22,8 +22,6 @@ import os
 import re
 import sys
 
-dire_pos = 5
-
 d = os.path.dirname(os.path.abspath(__file__))
 if 1 < len(sys.argv):
 	d = sys.argv[1]
