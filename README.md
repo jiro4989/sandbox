@@ -19,3 +19,16 @@ user@pc $ python mktvdb.py app DB id:i name:s usable:b > DB.java
 - i : int
 - s : String
 - b : Boolean
+
+## pytimer.py
+
+テキストファイル内の時間と音声ファイル情報から
+自動で音を鳴らして警告をする。
+
+## keybotter.py
+
+コンソール上で動作するツイッタークライアント。
+
+## flippicts.py
+
+rightフォルダに存在するpng画像をleftフォルダに名前を変更して出力する。

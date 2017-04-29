@@ -3,6 +3,7 @@
 import twython
 import configparser
 import re
+from colorama import Fore, Back
 from sys import stdout
 
 cfgfile = configparser.ConfigParser()
@@ -14,17 +15,16 @@ consumerSecret = cfgfile.get('oauth', 'app_secret')
 accessToken    = cfgfile.get('oauth', 'oauth_token')
 accessSecret   = cfgfile.get('oauth', 'oauth_token_secret')
 
+MENU = u"""
+{2}::: keybotter :::{0}
+
+{1}t{0} tw : tweets | {2}h{0} : home | {3}q{0} : quit
+""".format(Fore.WHITE, Fore.CYAN, Fore.GREEN, Fore.RED)
+
 api = twython.Twython(app_key=consumerKey,
 		app_secret=consumerSecret,
 		oauth_token=accessToken,
 		oauth_token_secret=accessSecret)
-
-def print_menu():
-	print(u"""
-::: keybotter :::
-
-t tw : tweets | h : home | q : quit
-""")
 
 def print_home():
 	timeline = api.get_home_timeline(count=10)
@@ -32,6 +32,7 @@ def print_home():
 	for json in timeline:
 		user = json['user']
 		name = user['name']
+		name = Fore.GREEN + name + Fore.WHITE
 		tweets = json['text']
 		print('%s - %s' % (name, tweets))
 
@@ -45,7 +46,7 @@ def tweets(keyinput):
 
 def main():
 	while True:
-		print_menu()
+		print(MENU)
 		stdout.write('input >> ')
 		keyinput = input()
 
