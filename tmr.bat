@@ -1,3 +1,4 @@
 @echo off
 
-python pytimer.py input\times.csv
+set cdp=%~dp0
+python %cdp%\pytimer.py %cdp%\input\times.csv

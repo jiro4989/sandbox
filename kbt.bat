@@ -1,3 +1,4 @@
 @echo off
 
-python keybotter.py
+set cdp=%~dp0
+python %cdp%\keybotter.py
