@@ -31,4 +31,6 @@ user@pc $ python mktvdb.py app DB id:i name:s usable:b > DB.java
 
 ## flippicts.py
 
-rightフォルダに存在するpng画像をleftフォルダに名前を変更して出力する。
+rightフォルダに存在するpng画像をすべて左右反転し、  
+ファイル名に含まれる \_R\_ というタグをすべて \_L\_ に変更して、  
+leftフォルダに出力する。
