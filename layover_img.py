@@ -6,7 +6,7 @@ from image4layer import Image4Layer
 import os, sys, time, json
 
 def main():
-    infofile = open('./img/info.json')
+    infofile = open('./img/image_layer.json')
     info = json.load(infofile)
 
     imgdir = info["imgdir"]
@@ -25,7 +25,7 @@ def main():
     colormodel = imginfo['colormodel']
     base       = imginfo['base']
     pattern    = imginfo['pattern']
-    baseimg  = Image.open(f'{imgdir}/{base}.{ext}').convert(colormodel)
+    baseimg    = Image.open(f'{imgdir}/{base}.{ext}').convert(colormodel)
 
     for opt in imginfo['option']:
         # 必須の8画像を出力
@@ -53,6 +53,9 @@ def main():
     print('スクリプトは正常に終了しました。')
 
 def processing_image(i, outname, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse):
+    u'''\
+    画像を加工する。
+    '''
     name = outname.format(i) if opt == None else outname.format(i+100)
     sys.stdout.write(f'{name} >>> ')
     copyimg = baseimg.copy()
@@ -80,14 +83,23 @@ def layover_img(srcimg, imgpath, color='RGBA'):
     srcimg.paste(img, (0,0), img.split()[3])
 
 def mul(srcimg, imgpath, color='RGBA'):
+    u'''\
+    画像に乗算で画像を重ねて返す
+    '''
     img = Image.open(imgpath).convert(color)
     return Image4Layer.multiply(srcimg, img)
 
 def highlight(srcimg, imgpath, color='RGBA'):
+    u'''\
+    画像にlightenで画像を重ね返す
+    '''
     img = Image.open(imgpath).convert(color)
     return Image4Layer.lighten(srcimg, img)
 
 def mk_outdir(path):
+    u'''\
+    画像の出力先ディレクトリを生成する。
+    '''
     sys.stdout.write('出力先ディレクトリの生成 >>> ')
     try:
         os.mkdir(path)
