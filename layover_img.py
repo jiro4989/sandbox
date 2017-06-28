@@ -6,15 +6,47 @@ from image4layer import Image4Layer
 import os, sys, time, json
 
 def main():
-    if len(sys.argv < 2):
-        print(u'設定用jsonファイルのパスを引数で指定してください。')
-        sys.exit()
+    parser = argparse.ArgumentParser(description=\
+            u'これはパーツ上の画像ファイルから立ち絵差分を生成するスクリプトです。')
 
-    infofile = open(sys.argv[1])
+    parser.add_argument(
+            'path_img_layer'
+            , type=str
+            , help=u'処理する画像のパターンを指定するファイル'
+            )
+
+    parser.add_argument(
+            '-s'
+            , '--src-dir'
+            , type=str
+            , help=\
+                    u'画像生成元の画像パターンが存在するディレクトリ。'
+                    u'default : image_layer.jsonと同じ階層のsrcディレクトリ'
+                    )
+
+    parser.add_argument(
+            '-o'
+            , '--out-dir'
+            , type=str
+            , help=\
+                    u'パターンから生成された画像の出力先ディレクトリ。'
+                    u'default : image_layer.jsonと同じ階層のoutディレクトリ'
+                    )
+
+    parser.add_argument(
+            '-n'
+            , '--out-formatter'
+            , type=str
+            , help=u'出力ファイル名の書式'
+            )
+
+    args = parser.parse_args()
+
+    infofile = open(args.path_img_layer)
     info = json.load(infofile)
 
-    imgdir = info["imgdir"]
-    outdir = info["outdir"]
+    imgdir = args.src_dir
+    outdir = args.out_dir
 
     if not (os.path.exists(imgdir)):
         print(imgdir +  'が存在しません。')
@@ -23,13 +55,13 @@ def main():
 
     mk_outdir(outdir)
 
-    imginfo    = info['img']
-    outname    = imginfo['outname']
-    ext        = imginfo['ext']
-    colormodel = imginfo['colormodel']
-    base       = imginfo['base']
-    pattern    = imginfo['pattern']
-    baseimg    = Image.open(f'{imgdir}/{base}.{ext}').convert(colormodel)
+    imginfo       = info['img']
+    out_formatter = args.out_formatter
+    ext           = imginfo['ext']
+    colormodel    = imginfo['colormodel']
+    base          = imginfo['base']
+    pattern       = imginfo['pattern']
+    baseimg       = Image.open(f'{imgdir}/{base}.{ext}').convert(colormodel)
 
     for opt in imginfo['option']:
         # 必須の8画像を出力
@@ -40,7 +72,7 @@ def main():
             eye      = necessary['eye']
             mouse    = necessary['mouse']
 
-            processing_image(i, outname, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse)
+            processing_image(i, out_formatter, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse)
 
         # 移行はオプションで存在する場合だけ実行される
         others = pattern['others']
@@ -52,15 +84,15 @@ def main():
                     for mouse in others['mouse']:
                         i += 1
                         baseimg  = Image.open(f'{imgdir}/{base}.{ext}').convert(colormodel)
-                        processing_image(i, outname, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse)
+                        processing_image(i, out_formatter, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse)
 
     print('スクリプトは正常に終了しました。')
 
-def processing_image(i, outname, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse):
+def processing_image(i, out_formatter, outdir, imgdir, ext, opt, baseimg, eyebrows, eye, mouse):
     u'''\
     画像を加工する。
     '''
-    name = outname.format(i) if opt == None else outname.format(i+100)
+    name = out_formatter.format(i) if opt == None else out_formatter.format(i+100)
     sys.stdout.write(f'{name} >>> ')
     copyimg = baseimg.copy()
 
