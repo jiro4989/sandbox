@@ -6,7 +6,11 @@ from image4layer import Image4Layer
 import os, sys, time, json
 
 def main():
-    infofile = open('./img/image_layer.json')
+    if len(sys.argv < 2):
+        print(u'設定用jsonファイルのパスを引数で指定してください。')
+        sys.exit()
+
+    infofile = open(sys.argv[1])
     info = json.load(infofile)
 
     imgdir = info["imgdir"]
