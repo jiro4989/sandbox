@@ -16,12 +16,19 @@ def main():
             )
 
     parser.add_argument(
+            , 'out_formatter'
+            , type=str
+            , help=u'出力ファイル名の書式'
+            )
+
+    parser.add_argument(
             '-s'
             , '--src-dir'
             , type=str
             , help=\
                     u'画像生成元の画像パターンが存在するディレクトリ。'
                     u'default : image_layer.jsonと同じ階層のsrcディレクトリ'
+            , default='src'
                     )
 
     parser.add_argument(
@@ -31,14 +38,8 @@ def main():
             , help=\
                     u'パターンから生成された画像の出力先ディレクトリ。'
                     u'default : image_layer.jsonと同じ階層のoutディレクトリ'
+            , default='out'
                     )
-
-    parser.add_argument(
-            '-n'
-            , '--out-formatter'
-            , type=str
-            , help=u'出力ファイル名の書式'
-            )
 
     args = parser.parse_args()
 
