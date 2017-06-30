@@ -4,6 +4,7 @@
 from PIL import Image
 from image4layer import Image4Layer
 import os, sys, time, json
+import argparse
 
 def main():
     parser = argparse.ArgumentParser(description=\
@@ -16,7 +17,7 @@ def main():
             )
 
     parser.add_argument(
-            , 'out_formatter'
+            'out_formatter'
             , type=str
             , help=u'出力ファイル名の書式'
             )
@@ -46,8 +47,9 @@ def main():
     infofile = open(args.path_img_layer)
     info = json.load(infofile)
 
-    imgdir = args.src_dir
-    outdir = args.out_dir
+    absimg = os.path.abspath(args.path_img_layer)
+    imgdir = os.path.join(os.path.dirname(absimg), args.src_dir)
+    outdir = os.path.join(os.path.dirname(absimg), args.out_dir)
 
     if not (os.path.exists(imgdir)):
         print(imgdir +  'が存在しません。')
@@ -93,8 +95,8 @@ def processing_image(i, out_formatter, outdir, imgdir, ext, opt, baseimg, eyebro
     u'''\
     画像を加工する。
     '''
-    name = out_formatter.format(i) if opt == None else out_formatter.format(i+100)
-    sys.stdout.write(f'{name} >>> ')
+    name = out_formatter % i if opt == None else out_formatter % (i + 100)
+    sys.stdout.write(f'{outdir}/{name}.{ext} >>> ')
     copyimg = baseimg.copy()
 
     try:

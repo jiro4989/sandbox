@@ -1,8 +1,5 @@
 {
-  "outdir" : "img/out",
-  "imgdir":"./img/diff",
   "img":{
-    "outname":"actor019_R_{0:03d}",
     "ext":"png",
     "colormodel":"RGBA",
     "base"   : "base",
