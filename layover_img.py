@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+u'''差分画像を指定のパターンで組み合わせて出力する'''
+
 from PIL import Image
 from image4layer import Image4Layer
 import os, sys, time, json
@@ -8,18 +10,18 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description=\
-            u'これはパーツ上の画像ファイルから立ち絵差分を生成するスクリプトです。')
+            u'これはパーツ画像ファイルから立ち絵差分を生成するスクリプトです。')
 
     parser.add_argument(
             'path_img_layer'
             , type=str
-            , help=u'処理する画像のパターンを指定するファイル'
+            , help=u'処理する画像のパターンを指定するファイル (json)'
             )
 
     parser.add_argument(
             'out_formatter'
             , type=str
-            , help=u'出力ファイル名の書式'
+            , help=u'出力ファイル名の書式。(ex: out%03d (拡張子不要))'
             )
 
     parser.add_argument(
