@@ -9,11 +9,12 @@ u'指定したフォルダをフォルダ名.zipという名前で保存する'
 def main():
     print(u'pyzip.pyスクリプト開始')
     args = get_args()
-    outname = f'{args.target_dir}.zip'
+    outname = f'{args.target_dir}.zip' if args.outname == None \
+            else f'{args.outname}.zip'
     files = walktree(args.target_dir)
     with zipfile.ZipFile(outname, 'w', zipfile.ZIP_DEFLATED) as zf:
         for f in files:
-            sys.stdout.write(f'ZIP {f} >>> ')
+            sys.stdout.write(f'ZIP {f:<30} >>> ')
             try:
                 zf.write(str(f))
                 print(u'成功！')
@@ -37,6 +38,14 @@ def get_args():
 
     parser.add_argument(
             'target_dir'
+            , type=str
+            , help=\
+                    u'圧縮対象ディレクトリ'
+                    )
+
+    parser.add_argument(
+            '-n'
+            , '--outname'
             , type=str
             , help=\
                     u'圧縮対象ディレクトリ'
