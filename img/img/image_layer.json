@@ -1,0 +1,27 @@
+{
+  "img":{
+    "ext":"png",
+    "colormodel":"RGBA",
+    "base"   : "base",
+    "option": [null,["red","highlight"]],
+    "pattern" : {
+      "necessary":[
+          { "eyebrows" : "normal" , "eye" : "normal"   , "mouse" : "normal"  }
+        , { "eyebrows" : "normal" , "eye" : "normal"   , "mouse" : "smile"   }
+        , { "eyebrows" : "normal" , "eye" : "surprise" , "mouse" : "whisper" }
+        , { "eyebrows" : "normal" , "eye" : "normal"   , "mouse" : "spin"    }
+        , { "eyebrows" : "normal" , "eye" : "smile"    , "mouse" : "smile"   }
+        , { "eyebrows" : "angry"  , "eye" : "normal"   , "mouse" : "shout"   }
+        , { "eyebrows" : "sad"    , "eye" : "normal"   , "mouse" : "whisper" }
+        , { "eyebrows" : "normal" , "eye" : "smile"    , "mouse" : "normal"  }
+      ],
+      "others":{
+        "mouse":["normal","smile","whisper","spin","shout"],
+        "eye":[
+          { "name":"close"   ,"eyebrows":["normal"] },
+          { "name":"scornful","eyebrows":["normal","angry"] }
+        ]
+      }
+    }
+  }
+}
