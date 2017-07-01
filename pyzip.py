@@ -12,8 +12,9 @@ def main():
     outname = f'{args.target_dir}.zip' if args.outname == None \
             else f'{args.outname}.zip'
     files = walktree(args.target_dir)
+
     with zipfile.ZipFile(outname, 'w', zipfile.ZIP_DEFLATED) as zf:
-        for f in files:
+        for f in [x for x in files if not x.startswith(tuple(args.exclude))]:
             sys.stdout.write(f'ZIP {f:<30} >>> ')
             try:
                 zf.write(str(f))
@@ -49,6 +50,15 @@ def get_args():
             , type=str
             , help=\
                     u'圧縮対象ディレクトリ'
+                    )
+
+    parser.add_argument(
+            '-x'
+            , '--exclude'
+            , type=str
+            , help=\
+                    u'圧縮除外対象'
+            , nargs='*'
                     )
 
     args = parser.parse_args()

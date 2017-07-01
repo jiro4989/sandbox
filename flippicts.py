@@ -21,13 +21,13 @@ from os.path import join, relpath
 import os, re, sys
 
 def main():
-    d = os.path.dirname(os.path.abspath(__file__))
-    if 1 < len(sys.argv):
-        d = sys.argv[1]
-        d = d[0:-1]
+    if len(sys.argv) < 2:
+        print(u'引数が必要です。 target right dir')
+        sys.exit()
 
-    rdir = d + sep + 'right'
-    ldir = d + sep + 'left'
+    d = sys.argv[1]
+    rdir = os.path.join(d, 'right')
+    ldir = os.path.join(d, 'left')
 
     if not os.path.exists(rdir):
         print('rightディレクトリを作成しました。')
@@ -44,8 +44,8 @@ def main():
         rimg = Image.open(rfile)
         limg = rimg.transpose(Image.FLIP_LEFT_RIGHT)
         filename = filename.replace('_R_', '_L_')
-        lname = ldir + sep + filename
-        limg.save(ldir + sep + filename)
+        lname = os.path.join(ldir, filename)
+        limg.save(lname)
         print('[ {0} ] を出力しました。'.format(lname))
 
     print('正常に出力が完了しました！')
