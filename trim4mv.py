@@ -49,7 +49,7 @@ def main():
         topnum = 0
 
         # 取得していた画像ファイルすべてを処理
-        for i, f in enumerate(files):
+        for f in files:
             print(f'{f} の貼り付け ')
 
             # ファイルの連番を取得
@@ -71,11 +71,13 @@ def main():
             cimg = img.crop(res)
 
             # 8枚をオーバーしたら一度保存してタイル画像を初期化
+            i = (filenum - 1) % 100
             if i % 8 == 0 and i != 0:
                 save(p, args.out_formatter, fileindex, tile_img)
                 fileindex += 1
                 tile_img = Image.new(COLOR, tile_screen)
             tile_img.paste(cimg, calcpos(i), cimg.split()[3])
+
         save(p, args.out_formatter, fileindex, tile_img)
 
 def save(p, formatter, fileindex, tile_img):
