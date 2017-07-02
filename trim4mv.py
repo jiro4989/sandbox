@@ -15,8 +15,8 @@ cdnate_filename = None
 def main():
     global cdnate_filename
     args = get_args()
-    p = abspath(args.target_dir)
-    p = dirname(p)
+    p = dirname(abspath(args.target_dir)) if args.out_dir == None \
+            else abspath(args.out_dir)
     cdnate_filename = join(p, 'coordinates.csv')
 
     COLOR = 'RGBA'
@@ -39,8 +39,11 @@ def main():
         tile_screen = (W * 4, W * 2)
         tile_img = Image.new(COLOR, tile_screen)
 
+        # 拡大縮小スケール値
+        scale = int(cdnate[0])
+
         # トリミングする解像度
-        res = resolution(int(cdnate[0]), int(cdnate[1]))
+        res = resolution(int(cdnate[1]), int(cdnate[2]))
 
         # 出力するタイル画像に割り振るインデックス
         fileindex = 1
@@ -53,7 +56,7 @@ def main():
             print(f'{f} の貼り付け ')
 
             # ファイルの連番を取得
-            filenum = re.findall('(\d+)', f)[1]
+            filenum = re.findall('(\d+)', os.path.basename(f))[1]
             filenum = int(filenum)
 
             # 連番の3桁目の値が変化していたら
@@ -68,7 +71,9 @@ def main():
                 topnum = filenum // 100
 
             img = Image.open(f).convert(COLOR)
-            cimg = img.crop(res)
+            size = calc_scale(img, scale)
+            resized_img = img.resize(size, Image.BICUBIC)
+            cimg = resized_img.crop(res)
 
             # 8枚をオーバーしたら一度保存してタイル画像を初期化
             i = (filenum - 1) % 100
@@ -112,21 +117,39 @@ def get_args():
             , help=u'出力するファイル名書式'
             )
 
+    parser.add_argument(
+            '-o'
+            , '--out-dir'
+            , type=str
+            , help=u'画像の出力先ディレクトリ'
+            , default=None
+            )
+
     args = parser.parse_args()
     return args
 
 def resolution(x, y):
     return (x, y, x+W, y+W)
 
-def show_img(img, x, y):
-    print(f'x: {x}, y: {y}')
-    cropped_img = img.crop(resolution(x, y))
+def calc_scale(img, scale):
+    rate = scale / 100
+    w, h = img.size
+    w *= rate
+    h *= rate
+    size = (int(w), int(h))
+    return size
+
+def show_img(img, scale, x, y):
+    print(f'scale: {scale}, x: {x}, y: {y}')
+    size = calc_scale(img, scale)
+    resized_img = img.resize(size, Image.BICUBIC)
+    cropped_img = resized_img.crop(resolution(x, y))
     cropped_img.show()
 
-def quit(root, x, y):
+def quit(root, scale, x, y):
     global cdnate_filename
     with open(cdnate_filename, 'w') as f:
-        f.write(f'{x},{y}')
+        f.write(f'{scale},{x},{y}')
     root.quit()
 
 def show_gui(img):
@@ -136,16 +159,22 @@ def show_gui(img):
     img_max_width  = imgsize[0] - W
     img_max_height = imgsize[1] - W
 
-    xs = tk.Spinbox(root, from_=0, to=img_max_width, increment=1, width=10)
-    ys = tk.Spinbox(root, from_=0, to=img_max_height, increment=1, width=10)
+    scale_var = tk.IntVar()
+    scale_var.set(100)
+
+    ss = tk.Spinbox(root, from_=0, to=200, increment=5, width=10,
+            textvariable=scale_var)
+    xs = tk.Spinbox(root, from_=0, to=img_max_width, increment=5, width=10)
+    ys = tk.Spinbox(root, from_=0, to=img_max_height, increment=5, width=10)
 
     # 更新処理を実行するためのボタン
-    update_btn = tk.Button(root, text=u'確認', command=lambda: show_img(img,
-        int(xs.get()), int(ys.get())))
-    finish_btn = tk.Button(root, text=u'終了', command=lambda: quit(root,
-        int(xs.get()), int(ys.get())))
+    update_btn = tk.Button(root, text=u'確認'
+            , command=lambda: show_img(img, int(scale_var.get()), int(xs.get()), int(ys.get())))
+    finish_btn = tk.Button(root, text=u'終了'
+            , command=lambda: quit(root, int(scale_var.get()), int(xs.get()), int(ys.get())))
 
     # 各種コンポーネントの配置
+    ss.pack()
     xs.pack()
     ys.pack()
     update_btn.pack()

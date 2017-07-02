@@ -51,7 +51,7 @@ def main():
 
     absimg = os.path.abspath(args.path_img_layer)
     imgdir = os.path.join(os.path.dirname(absimg), args.src_dir)
-    outdir = os.path.join(os.path.dirname(absimg), args.out_dir)
+    outdir = os.path.abspath(args.out_dir)
 
     if not (os.path.exists(imgdir)):
         print(imgdir +  'が存在しません。')
@@ -141,9 +141,9 @@ def mk_outdir(path):
     u'''\
     画像の出力先ディレクトリを生成する。
     '''
-    sys.stdout.write('出力先ディレクトリの生成 >>> ')
+    sys.stdout.write(f'mkdir {path} >>> ')
     try:
-        os.mkdir(path)
+        os.makedirs(path)
         print('成功！')
     except:
         print('失敗！ すでに存在します。')
