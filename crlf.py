@@ -56,3 +56,4 @@ if __name__ == '__main__':
 
     for f in [f for f in files if os.path.isfile(f)]:
         convert(f, fromlf, tolf)
+
