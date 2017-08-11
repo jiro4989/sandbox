@@ -1,4 +1,6 @@
-# スクリプトまとめ
+# 概要
+
+自作のスクリプト管理リポジトリ。
 
 ## 0_package_list.bat
 
@@ -68,4 +70,20 @@ user@pc $ python mktvdb.py app DB id:i name:s usable:b > DB.java
 
 ダブルクリックで動きます。
 指定の時間になったらポップアップを表示します。
+
+## vtmp
+
+テンポラリファイルを生成して、
+パパっとソースを書いてテストするためのもの。
+
+### jc
+
+java compile
+
+vtmpで生成されたtmp.javaをコンパイルして実行する。
+
+## note
+
+メモ書きスクリプト。  
+ファイル名は日付。
 
