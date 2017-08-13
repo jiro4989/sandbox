@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from sys import stdout
 from datetime import datetime, timedelta
 import time
