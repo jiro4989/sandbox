@@ -5,16 +5,13 @@ import sys, time, argparse, os
 from datetime import datetime, timedelta
 
 def main():
-    args     = _get_args()
-    timenum  = args.timenum
-    timetype = args.timetype
+    args = _get_args()
+    h,m  = args.timestr.split(":")
 
-    if timetype == "s":
-        start(timenum)
-    elif timetype == "m":
-        start(timenum * 60)
-    else:
-        start(timenum * 60 * 60)
+    # now = datetime.now()
+    # y, m, d = now.year, now.month, now.day
+    # endtime = datetime(y, m, d, h, m)
+    # print(endtime)
 
 def start(timenum):
     print(u"計測時間 : " + calctime(timenum))
@@ -42,17 +39,9 @@ def _get_args():
     parser = argparse.ArgumentParser(description=u'残り時間を表示する。')
 
     parser.add_argument(
-            'timenum'
-            , type=int
-            , help=u'計測する時間'
-                    )
-
-    parser.add_argument(
-            '-t'
-            , '--timetype'
+            'timestr'
             , type=str
-            , default='m'
-            , help=u'時間のタイプ (s|m|h) default: m'
+            , help=u'時間の指定'
                     )
 
     return parser.parse_args()
