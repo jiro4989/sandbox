@@ -24,9 +24,9 @@ for file in $files; do
     html=`cat $file | iconv -f $2 -t $3`
     title=`echo $html | sed -e "s@.*<title>\(.*\)</title>.*@\1@g"`
 
-    cat $file | iconv -f SJIS -t UTF-8 \
+    cat $file | iconv -f $2 -t $3 \
       | sed -E 's@<[^>]*>@@g' \
-      | sed -E 's@(^ +| +$)@@g' > "${dirname}/${title}.html"
+      | sed -E 's@(^ +| +$)@@g' > "${dirname}/${title}.txt"
 
     # 元のファイルを削除
     rm $file
