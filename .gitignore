@@ -8,3 +8,4 @@ vtodo.bat
 /special/tmp/
 /special/ipinfos*
 /special/ips.txt
+/general/scrape.sh
