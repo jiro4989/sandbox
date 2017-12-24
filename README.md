@@ -2,6 +2,15 @@
 
 自作のスクリプト管理リポジトリ。
 
+## setup
+必要な各種ファイル、作業フォルダをセットアップする
+
+Ubuntu  
+`./setup/shell/all.sh`
+
+Windows  
+`.\setup\powershell\all.sh`
+
 ## 0_package_list.bat
 
 pipでインストールしたパッケージ一覧の情報を更新する
