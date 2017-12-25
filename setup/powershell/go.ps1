@@ -9,4 +9,5 @@ mkdir $env:userprofile\go
 , "github.com/julienroland/keyboard-termbox"
 , "github.com/goreleaser/goreleaser"
 , "github.com/loadoff/excl"
+, "github.com/mholt/archiver/cmd/archiver"
 ) | % { go get $_ }
