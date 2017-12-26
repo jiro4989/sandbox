@@ -10,4 +10,5 @@ mkdir $env:userprofile\go
 , "github.com/goreleaser/goreleaser"
 , "github.com/loadoff/excl"
 , "github.com/mholt/archiver/cmd/archiver"
+, "github.com/otiai10/copy"
 ) | % { go get $_ }
