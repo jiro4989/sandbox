@@ -19,6 +19,7 @@ gorepos=(
   "github.com/loadoff/excl"
   "github.com/mholt/archiver/cmd/archiver"
   "github.com/otiai10/copy"
+  "github.com/tealeg/xlsx"
 )
 for repo in ${gorepos[@]}; do
   go get $repo

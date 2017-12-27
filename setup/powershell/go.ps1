@@ -11,4 +11,5 @@ mkdir $env:userprofile\go
 , "github.com/loadoff/excl"
 , "github.com/mholt/archiver/cmd/archiver"
 , "github.com/otiai10/copy"
+, "github.com/tealeg/xlsx"
 ) | % { go get $_ }
