@@ -3,6 +3,7 @@
 AdobeAIR
 cmder
 ConEmu
+evernote
 Firefox
 flashplayeractivex
 flashplayerplugin
@@ -11,7 +12,7 @@ git
 git.install
 golang
 GoogleChrome
-hidemaru-editor
+googledrive
 javaruntime
 jdk8
 jre8
