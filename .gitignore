@@ -9,3 +9,4 @@ vtodo.bat
 /special/ipinfos*
 /special/ips.txt
 /general/scrape.sh
+*.jar
