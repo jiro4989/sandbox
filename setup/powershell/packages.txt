@@ -12,6 +12,7 @@ flashplayerplugin
 gimp
 git
 git.install
+gnuwin32-coreutils.install
 golang
 GoogleChrome
 javaruntime
