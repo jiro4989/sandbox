@@ -1,21 +1,4 @@
-@(
-  "flashplayerplugin"
-, "googlechrome"
-, "firefox"
-, "flashplayeractivex"
-, "adobeair"
-, "7zip"
-, "javaruntime"
-, "git"
-, "nodejs"
-, "jdk8"
-, "vim"
-, "krita"
-, "python"
-, "golang"
-, "ruby"
-, "kotlinc"
-, "gimp"
-, "slack"
-, "libreoffice"
-) | % { choco install $_ -y }
+$scriptPath = $MyInvocation.MyCommand.Path
+$parentPath = Split-Path -Parent $scriptPath
+
+cat $parentPath\packages.txt | % { choco install $_ -y }
