@@ -16,6 +16,7 @@ otherapts=(
   "xclip"                   # copy to clipboard
   "unar"                    # unzip
   "npm"
+  "zsh"
 )
 for apt in ${otherapts[@]}; do
   sudo apt-get install $apt -y
