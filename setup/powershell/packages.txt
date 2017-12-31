@@ -15,6 +15,7 @@ git.install
 gnuwin32-coreutils.install
 golang
 GoogleChrome
+intellijidea-community
 javaruntime
 jdk8
 jre8
