@@ -20,6 +20,9 @@ gorepos=(
   "github.com/mholt/archiver/cmd/archiver"
   "github.com/otiai10/copy"
   "github.com/tealeg/xlsx"
+  "golang.org/x/oauth2"
+  "golang.org/x/oauth2/google"
+  "google.golang.org/api/gmail/v1"
 )
 for repo in ${gorepos[@]}; do
   go get $repo
