@@ -1,20 +1,20 @@
 @echo off
 
-cd %userprofile%
-mkdir tmp
+rem 各種tmpファイルの配置場所の作成
+mkdir %userprofile%\tmp
 
-mkdir %userprofile%"\dotfiles\bundle"
-cd %userprofile%"\dotfiles\bundle"
-git clone https://github.com/Shougo/dein.vim.git
+git clone https://github.com/jiro4989/dotfiles.git %userprofile%\dotfiles
+git clone https://github.com/Shougo/dein.vim.git %userprofile%\dotfiles\vim\dein
 
-mklink %userprofile%"\.vimrc" %userprofile%"\dotfiles\.vimrc"
-mklink %userprofile%"\.gvimrc" %userprofile%"\dotfiles\.gvimrc"
-mklink %userprofile%"\.vimperatorrc" %userprofile%"\dotfiles\.vimperatorrc"
-mklink %userprofile%"\.vrapperrc" %userprofile%"\dotfiles\.vrapperrc"
+mklink /d %userprofile%\.vim %userprofile%\dotfiles\vim\
 
-mkdir %userprofile%"\.vim"
-mklink /D %userprofile%"\.vim\template" %userprofile%"\dotfiles\template"
-mklink /D %userprofile%"\.vim\bundle" %userprofile%"\dotfiles\bundle"
-mklink /D %userprofile%"\.vim\dict" %userprofile%"\dotfiles\dict"
+rem 各種rcファイルのシンボリックリンクの追加
+mklink %userprofile%\.vimrc %userprofile%\.vim\rc\.vimrc
+mklink %userprofile%\.gvimrc %userprofile%\.vim\rc\.gvimrc
+mklink %userprofile%"\.vimperatorrc" %userprofile%"\.vim\rc\.vimperatorrc"
+mklink %userprofile%"\.vrapperrc" %userprofile%"\.vim\rc\.vrapperrc"
 
-mklink /D %userprofile%"\vimfiles" %userprofile%"\dotfiles\vimfiles"
+rem tomlファイルの配置場所の作成
+mkdir  %userprofile%\.config
+mkdir  %userprofile%\.config\vim
+mklink /d %userprofile%\.config\vim\dein %userprofile%\.vim\rc\dein\

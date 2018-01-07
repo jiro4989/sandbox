@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# 参照元ディレクトリ
-vimdir="dotfiles"
-github="https://github.com"
+mkdir ~/tmp
 
+# vimのインストール {{{
 apts=(
   "vim"
   "vim-gnome"
@@ -11,38 +10,25 @@ apts=(
 for apt in ${apts[@]}; do
   sudo apt-get install $apt -y
 done
-
-git clone $github/jiro4989/$vimdir.git ~/$vimdir
-
-dirs=(
-  "~/tmp"
-  "~/.vim"
-  "~/$vimdir/bundle"
-)
-for dir in $dirs; do
-  mkdir $dir
-done
-
-git clone $github/Shougo/dein.vim.git ~/$vimdir/bundle/dein.vim
-
-# 各種設定フォルダのシンボリックリンクの作成
-symlinks=(
+#}}}
+# 必要リポジトリのcloneの取得 {{{
+github="https://github.com"
+git clone $github/jiro4989/dotfiles.git ~/dotfiles
+git clone $github/Shougo/dein.vim.git ~/dotfiles/vim/dein
+ln -sf ~/dotfiles/vim/ ~/.vim
+#}}}
+# rcファイルのシンボリックリンクの作成 {{{
+rcs=(
   ".vimrc"
   ".gvimrc"
   ".vimperatorrc"
+  ".vrapperrc"
 )
-for symlink in $symlinks; do
-  ln -sf ~/$vimdir/$symlink ~/$symlink
+for rc in ${rcs[@]}; do
+  ln -sf ~/.vim/rc/.$rc ~/.$rc
 done
-
-symlinks=(
-  "bundle"
-  "dict"
-  "vimfiles"
-  "colors"
-  "template"
-)
-for symlink in $symlinks; do
-  ln -sf ~/$vimdir/$symlinks ~/.vim
-done
-
+#}}}
+# tomlファイルの配置 {{{
+mkdir -p ~/.config/vim
+ln -sf ~/$vimdir/rc/dein
+#}}}
