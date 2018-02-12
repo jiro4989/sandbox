@@ -9,3 +9,4 @@ sudo apt-get install ruby-dev
 sudo apt-get install libsqlite3-dev
 sudo gem install rails
 bundle install
+sudo apt-get install -y sqlite3
