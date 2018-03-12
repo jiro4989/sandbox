@@ -17,6 +17,7 @@ otherapts=(
   "unar"                    # unzip
   "npm"
   "zsh"
+  "terminator"
 )
 for apt in ${otherapts[@]}; do
   sudo apt-get install $apt -y
