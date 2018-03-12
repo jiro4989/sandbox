@@ -23,3 +23,5 @@ for apt in ${otherapts[@]}; do
   sudo apt-get install $apt -y
 done
 
+# デフォルトターミナルの変更
+update-alternatives --config x-terminal-emulator

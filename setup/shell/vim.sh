@@ -25,10 +25,10 @@ rcs=(
   ".vrapperrc"
 )
 for rc in ${rcs[@]}; do
-  ln -sf ~/.vim/rc/.$rc ~/.$rc
+  ln -sf ~/.vim/rc/$rc ~/
 done
 #}}}
 # tomlファイルの配置 {{{
 mkdir -p ~/.config/vim
-ln -sf ~/$vimdir/rc/dein
+ln -sf ~/.vim/rc/dein ~/.config/vim/dein
 #}}}
