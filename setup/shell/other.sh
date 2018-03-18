@@ -20,7 +20,8 @@ sudo apt-get install -y \
   zsh \
   terminator \
   build-essential \
-  libgl1-mesa-dev
+  libgl1-mesa-dev \
+  tmux
 
 # デフォルトターミナルの変更
 update-alternatives --config x-terminal-emulator

@@ -9,18 +9,14 @@ sudo apt-get update -y
 # シェルの実行される順番も意識する必要があるため
 # lsした結果をループする実装はあえて行わない
 d=`dirname ${0}`
-fns=(
-  "env"
-  "go"
-  "java"
-  "kotlin"
-  "python"
-  "vim"
-  "other"
-)
-for fn in $fns; do
-  bash $d/$fn.sh
-done
+
+bash $d/env.sh
+bash $d/go.sh
+bash $d/java.sh
+bash $d/kotlin.sh
+bash $d/python.sh
+bash $d/vim.sh
+bash $d/other.sh
 
 # インストールしたパッケージのアップグレード
 # ------------------------------------------------------------ 
