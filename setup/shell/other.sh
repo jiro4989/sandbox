@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install -y \
+for app in \
   krita \
   kazam \
   libav-tools \
@@ -22,6 +22,9 @@ sudo apt-get install -y \
   build-essential \
   libgl1-mesa-dev \
   tmux
+do
+  sudo apt-get install -y $app
+done
 
 # デフォルトターミナルの変更
 update-alternatives --config x-terminal-emulator
