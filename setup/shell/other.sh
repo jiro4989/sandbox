@@ -21,6 +21,7 @@ for app in \
   terminator \
   build-essential \
   libgl1-mesa-dev \
+  dropbox
   tmux
 do
   sudo apt-get install -y $app
