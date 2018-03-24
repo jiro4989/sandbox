@@ -25,6 +25,7 @@ sudo apt-get install -y tmux
 sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y docker.io
 sudo apt-get install -y plantuml
+sudo apt-get install -y jq
 
 # デフォルトターミナルの変更
 update-alternatives --config x-terminal-emulator
