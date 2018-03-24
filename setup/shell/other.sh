@@ -24,6 +24,7 @@ sudo apt-get install -y dropbox
 sudo apt-get install -y tmux
 sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y docker.io
+sudo apt-get install -y plantuml
 
 # デフォルトターミナルの変更
 update-alternatives --config x-terminal-emulator
