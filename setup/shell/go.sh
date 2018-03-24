@@ -25,3 +25,6 @@ go get -u google.golang.org/api/gmail/v1
 go get -u github.com/therecipe/qt
 go get -u -v github.com/therecipe/qt/cmd/..
 go get -d github.com/tcnksm/cli-init
+
+cd $GOPATH/src/github.com/tcnksm/cli-init
+go install
