@@ -2,11 +2,9 @@
 
 mkdir $HOME/go
 
-sudo apt-get install golang -y
-sudo apt-get install libgtk2.0-dev libglib2.0-dev libgtksourceview2.0-dev -y
-
-go get github.com/mattn/go-gtk/gtk
-go install github.com/mattn/go-gtk/gtk
+sudo add-apt-repository ppa:gophers/archive
+sudo apt-get update
+sudo apt-get install golang-1.10-go
 
 go get -u github.com/nsf/gocode
 go get -u golang.org/x/tools/cmd/godoc
