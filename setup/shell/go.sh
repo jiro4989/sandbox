@@ -23,6 +23,7 @@ go get -u google.golang.org/api/gmail/v1
 go get -u github.com/therecipe/qt
 go get -u -v github.com/therecipe/qt/cmd/..
 go get github.com/ChimeraCoder/gojson/gojson
+go get github.com/fatih/color
 
 go get -d github.com/tcnksm/gcli
 cd $GOPATH/src/github.com/tcnksm/gcli
