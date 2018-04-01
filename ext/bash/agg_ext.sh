@@ -6,10 +6,13 @@ target_dir=$1
 find $target_dir -type f |
   grep -vE "/\.git/" |
   grep -E "/[^./]*\.[^./]+$" |
-  sed -r 's@^.*\.([^.]+)$@\1@g' |
-  sort |
-  uniq |
-  while read -r ext
+  while read -r f
+  do
+    echo ${f##*.}
+  done |
+    sort |
+    uniq |
+    while read -r ext
     do
       find $target_dir -type f |
         grep -E "\.$ext\$" |
