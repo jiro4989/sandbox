@@ -3,25 +3,11 @@
 set -eu
 
 target_dir=$1
-find $target_dir -type f |
-  grep -vE "/\.git/" |
+
+find $target_dir -type f -printf "%TY-%Tm %p\n" |
+  grep -v '/.git/' |
   grep -E "/[^./]*\.[^./]+$" |
-  while read -r f
-  do
-    echo ${f##*.}
-  done |
-    sort |
-    uniq |
-    while read -r ext
-    do
-      find $target_dir -type f |
-        grep -E "\.$ext\$" |
-        xargs ls --full-time |
-        awk '{print $6, $9}' |
-        sed -r 's@-[0-9]{2} @ @g' |
-        sed -r 's@( .*\.)([^.]+)$@\1\2 \2@g' |
-        awk '{map[$1]++} END{ for (key in map) { print key, $3, map[key] } }'
-    done |
-      sort |
-      cat <(echo date extension count) - |
-      column -t
+  awk -F'[ .]' '{map[$1" ."$NF]++; sum++} END{for(key in map) {print key, map[key]} print "_", "total", sum}' |
+  sort | 
+  cat <(echo date extension count) - |
+  column -t
