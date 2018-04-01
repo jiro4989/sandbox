@@ -4,7 +4,7 @@ set -eu
 
 target_dir=$1
 find $target_dir -type f |
-  grep -vE "/\.git/|\.(xml|config|txt|gitignore|png)$" |
+  grep -vE "/\.git/" |
   grep -E "/[^./]*\.[^./]+$" |
   sed -r 's@^.*\.([^.]+)$@\1@g' |
   sort |
