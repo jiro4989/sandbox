@@ -27,6 +27,7 @@ go get -u golang.org/x/oauth2/google
 go get -u golang.org/x/tools/cmd/godoc
 go get -u google.golang.org/api/gmail/v1
 go get -u github.com/BurntSushi/toml
+go get -u github.com/golang/dep/cmd/dep
 
 go get -v github.com/alecthomas/gometalinter
 gometalinter --install --update
