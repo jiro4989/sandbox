@@ -26,6 +26,7 @@ sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y plantuml
 sudo apt-get install -y jq
 sudo apt-get install -y tree
+sudo apt-get install -y nkf
 
 # デフォルトターミナルの変更
 update-alternatives --config x-terminal-emulator
