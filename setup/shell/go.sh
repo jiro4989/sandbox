@@ -10,7 +10,6 @@ go get -u -v github.com/therecipe/qt/cmd/..
 go get -u github.com/ChimeraCoder/gojson/gojson
 go get -u github.com/cweill/gotests/...
 go get -u github.com/fatih/color
-go get -u github.com/goreleaser/goreleaser
 go get -u github.com/julienroland/keyboard-termbox
 go get -u github.com/loadoff/excl
 go get -u github.com/mattn/go-colorable
@@ -28,6 +27,7 @@ go get -u golang.org/x/tools/cmd/godoc
 go get -u google.golang.org/api/gmail/v1
 go get -u github.com/BurntSushi/toml
 go get -u github.com/golang/dep/cmd/dep
+go get -u github.com/tcnksm/ghr
 
 go get -v github.com/alecthomas/gometalinter
 gometalinter --install --update
