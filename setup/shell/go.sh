@@ -29,6 +29,7 @@ go get -u github.com/BurntSushi/toml
 go get -u github.com/golang/dep/cmd/dep
 go get -u github.com/tcnksm/ghr
 go get -u github.com/gohugoio/hugo
+go get -u github.com/mattn/memo
 
 go get -v github.com/alecthomas/gometalinter
 gometalinter --install --update

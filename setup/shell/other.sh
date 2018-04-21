@@ -28,5 +28,10 @@ sudo apt-get install -y jq
 sudo apt-get install -y tree
 sudo apt-get install -y nkf
 
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y atom
+
 # デフォルトターミナルの変更
 update-alternatives --config x-terminal-emulator
