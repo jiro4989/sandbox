@@ -29,7 +29,13 @@ go get -u github.com/BurntSushi/toml
 go get -u github.com/golang/dep/cmd/dep
 go get -u github.com/tcnksm/ghr
 go get -u github.com/gohugoio/hugo
+
+# メモツール
 go get -u github.com/mattn/memo
+git clone https://github.com/peco/peco.git
+cd peco
+go build -o $GOPATH/bin/peco cmd/peco/peco.go
+cd ..
 
 go get -v github.com/alecthomas/gometalinter
 gometalinter --install --update
