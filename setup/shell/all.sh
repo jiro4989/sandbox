@@ -12,7 +12,9 @@ bash $d/java.sh
 bash $d/kotlin.sh
 bash $d/python.sh
 bash $d/vim.sh
+bash $d/nvim.sh
 bash $d/music.sh
+bash $d/docker.sh
 bash $d/other.sh
 
 # インストールしたパッケージのアップグレード
