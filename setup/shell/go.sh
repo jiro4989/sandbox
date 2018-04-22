@@ -6,7 +6,6 @@ sudo add-apt-repository ppa:gophers/archive
 sudo apt-get update
 sudo apt-get install golang-1.10-go
 
-go get -u -v github.com/therecipe/qt/cmd/..
 go get -u github.com/ChimeraCoder/gojson/gojson
 go get -u github.com/cweill/gotests/...
 go get -u github.com/fatih/color
@@ -19,7 +18,6 @@ go get -u github.com/nsf/gocode
 go get -u github.com/nsf/termbox-go
 go get -u github.com/otiai10/copy
 go get -u github.com/tealeg/xlsx
-go get -u github.com/therecipe/qt
 go get -u github.com/urfave/cli
 go get -u golang.org/x/oauth2
 go get -u golang.org/x/oauth2/google
@@ -32,10 +30,6 @@ go get -u github.com/gohugoio/hugo
 
 # メモツール
 go get -u github.com/mattn/memo
-git clone https://github.com/peco/peco.git
-cd peco
-go build -o $GOPATH/bin/peco cmd/peco/peco.go
-cd ..
 
 go get -v github.com/alecthomas/gometalinter
 gometalinter --install --update
