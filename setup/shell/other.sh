@@ -23,6 +23,10 @@ sudo apt-get install -y plantuml
 sudo apt-get install -y tree
 sudo apt-get install -y nkf
 
+# フォント
+# フォント名は 'Ricty Diminished'
+sudo apt-get install -y fonts-ricty-diminished
+
 sudo add-apt-repository ppa:webupd8team/atom
 sudo apt-get update
 sudo apt-get upgrade -y
