@@ -22,6 +22,7 @@ sudo apt-get install -y libgtk-3-dev
 sudo apt-get install -y plantuml
 sudo apt-get install -y tree
 sudo apt-get install -y nkf
+sudo apt-get install -y steam
 
 # フォント
 # フォント名は 'Ricty Diminished'
