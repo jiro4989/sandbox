@@ -23,5 +23,5 @@ git clone https://github.com/jiro4989/scripts.git $gitrepo/scripts
 sudo echo "blacklist pcspkr" >> /etc/modprobe.d/blacklist.conf
 
 # bashrcの設定を追加
-echo "source ~/dotfiles/.bashrc.jiro" >> ~/.bashrc
+echo "source ~/dotfiles/.bashrc" >> ~/.bashrc
 
