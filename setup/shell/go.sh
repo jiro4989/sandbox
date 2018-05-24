@@ -27,8 +27,8 @@ go get -u github.com/BurntSushi/toml
 go get -u github.com/golang/dep/cmd/dep
 go get -u github.com/tcnksm/ghr
 go get -u github.com/gohugoio/hugo
-go get -u github.com/leonardyp/gocopy
 go get -u github.com/jiro4989/clgrep
+go get -u github.com/atotto/clipboard/cmd/gocopy
 
 # メモツール
 go get -u github.com/mattn/memo
