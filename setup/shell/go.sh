@@ -22,6 +22,8 @@ go get -u github.com/urfave/cli
 go get -u golang.org/x/oauth2
 go get -u golang.org/x/oauth2/google
 go get -u golang.org/x/tools/cmd/godoc
+go get -u golang.org/x/exp/shiny/...
+sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev libx11-dev
 go get -u google.golang.org/api/gmail/v1
 go get -u github.com/BurntSushi/toml
 go get -u github.com/golang/dep/cmd/dep
@@ -29,6 +31,7 @@ go get -u github.com/tcnksm/ghr
 go get -u github.com/gohugoio/hugo
 go get -u github.com/jiro4989/clgrep
 go get -u github.com/atotto/clipboard/cmd/gocopy
+go get -u github.com/b4b4r07/gist
 
 # メモツール
 go get -u github.com/mattn/memo
