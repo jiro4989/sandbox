@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sudo pacman -S gvim
-
 GIT=https://github.com
 MY_GITHUB=$GIT/jiro4989
 DOTFILES_DIR=$HOME/dotfiles

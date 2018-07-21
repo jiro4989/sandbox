@@ -1,10 +1,9 @@
 #!/bin/bash
 
-set -eu
+# Need too long time
+sudo pacman -Syyu
 
-yes | ./install.sh
-yes | ./setup.sh
-yes | ./vim.sh
+./common/index.sh pacman/install.sh
 
 # 手動でないとだめな箇所があるため
-./others.sh
+./pacman/others.sh
