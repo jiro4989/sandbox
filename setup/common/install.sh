@@ -5,14 +5,24 @@
 #   ./common/install.sh common/pkg.list apt-get install
 #
 # Arguments:
-#   Ubuntu -> sudo apt-get install
-#   ManjaroLinux -> sudo pacman -S
+#   Ubuntu -> apt-get install
+#   ManjaroLinux -> pacman -S
 
 LIST=$1
 CMD=$2
 OPTIONS=${@:3:$#-2}
 
-cat $LIST | while read -r pkg
+cat $LIST \
+  | grep -Ev "^\s*#" \
+  | grep -Ev "^\s*$" \
+  | while read -r line
 do
-  sudo $CMD ${OPTIONS[@]} $pkg
+  genre=$(echo $line | cut -f 1)
+  pkg=$(echo $line | cut -f 2)
+
+  if [ "$genre" = "all" ]; then
+    sudo $CMD ${OPTIONS[@]} $pkg
+  elif [ "$genre" = "$CMD" ]; then
+    sudo $CMD ${OPTIONS[@]} $pkg
+  fi
 done
