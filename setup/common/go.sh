@@ -39,3 +39,5 @@ gometalinter --install --update
 # coverage
 go get -u github.com/axw/gocov/gocov
 
+# クロスコンパイル
+go get -u github.com/mitchellh/gox
