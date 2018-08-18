@@ -30,6 +30,12 @@ go get -u github.com/tcnksm/ghr
 # clipboard
 go get -u github.com/atotto/clipboard/cmd/gocopy
 
+# Debugger
+go get -u github.com/derekparker/delve/cmd/dlv
+
 go get -v github.com/alecthomas/gometalinter
 gometalinter --install --update
+
+# coverage
+go get -u github.com/axw/gocov/gocov
 

@@ -25,3 +25,8 @@ all	terminator
 apt-get	krita
 pacman	intellij-idea-community-edition
 all	deadbeef
+pacman	python-pip
+pacman	mysql-workbench
+all	gradle
+# PlantuMLで必要
+all	graphviz
