@@ -30,3 +30,4 @@ pacman	mysql-workbench
 all	gradle
 # PlantuMLで必要
 all	graphviz
+all	lmms

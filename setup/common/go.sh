@@ -39,5 +39,8 @@ gometalinter --install --update
 # coverage
 go get -u github.com/axw/gocov/gocov
 
+# count srccode
+go get -u github.com/hhatto/gocloc/cmd/gocloc
+
 # クロスコンパイル
 go get -u github.com/mitchellh/gox
