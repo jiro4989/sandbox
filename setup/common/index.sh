@@ -10,3 +10,6 @@ SPECIAL_SCRIPT=$1
 ./common/go.sh
 ./common/vim.sh
 ./common/docker.sh
+
+# キーリピートとディレイを設定
+xset r rate 195 30
