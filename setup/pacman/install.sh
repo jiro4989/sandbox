@@ -1,3 +1,6 @@
 #!/bin/bash
 
-yes | ./common/install.sh common/pkg.list pacman -S
+set -eu
+
+source ./install.conf
+pacman -S $(cat $PKGLIST)
