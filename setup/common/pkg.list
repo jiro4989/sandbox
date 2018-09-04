@@ -31,3 +31,4 @@ all	gradle
 # PlantuMLで必要
 all	graphviz
 all	lmms
+all	zip
