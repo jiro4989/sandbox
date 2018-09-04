@@ -3,4 +3,4 @@
 set -eu
 
 source ./install.conf
-pacman -S $(cat $PKGLIST)
+pacman -Syu $(cat $PKGLIST) --noconfirm
