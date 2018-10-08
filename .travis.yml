@@ -6,5 +6,5 @@ install:
   - sudo apt install -qq shellcheck
 
 script:
-  - shfmt bin/*.sh
-  - shellcheck bin/*.sh
+  - shfmt bin/*
+  - shellcheck bin/*
