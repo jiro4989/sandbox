@@ -4,11 +4,18 @@
 # 引数で指定したプロジェクトを起動する。
 # 引数で指定しなかった場合は番号で入力するプロンプトが表示される。
 #
+# 使い方
+# 	play_game {project_name}
+#
 # 前提
 # 	NW.jsを配置する。
 #
 # 引数
 # 	プロジェクト名(ディレクトリ名)
+#
+# 参考
+# 	https://kakurasan.blogspot.com/2017/02/rpgmv-games-on-linux.html
+
 
 game=$1
 
