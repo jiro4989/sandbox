@@ -27,7 +27,7 @@ if [ "$game" = "" ]; then
 	# ゲーム一覧の取得
 	cnt=0
 	for d in *; do
-		[[ "$d" =~ (nw|play_game) ]] && continue
+		[ "$d" = "nw" ] && continue
 
 		games[$cnt]=$d
 		cnt=$((cnt + 1))
