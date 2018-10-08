@@ -2,7 +2,8 @@ language: bash
 
 install:
   - go get -u mvdan.cc/sh/cmd/shfmt
-  - sudo apt install -y shellcheck
+  - sudo apt update -qq
+  - sudo apt install -qq shellcheck
 
 script:
   - shfmt bin/*.sh
