@@ -1,0 +1,37 @@
+#!/bin/bash
+
+game=$1
+
+# ゲームの指定がない場合はキー入力から選択
+if [ "$game" = "" ]; then
+	echo game list.
+	echo
+
+	# ゲーム一覧の取得
+	cnt=0
+	for d in *; do
+		[[ "$d" =~ (nw|play_game) ]] && continue
+
+		games[$cnt]=$d
+		cnt=$((cnt + 1))
+	done
+
+	# ゲーム一覧の出力
+	for ((i = 0; i < ${#games[@]}; i++)); do
+		echo -e "\t$i)\t${games[$i]}"
+	done
+
+	echo
+
+	# 数字でゲームを指定
+	echo "enter number of game or q."
+	printf "> "
+	read -r num
+
+	[ "$num" = "q" ] && exit 0
+
+	game=${games[$num]}
+fi
+
+cd nw || exit 1
+./nw "../$game"
