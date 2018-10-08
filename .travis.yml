@@ -1,0 +1,9 @@
+language: bash
+
+install:
+  - go get -u mvdan.cc/sh/cmd/shfmt
+  - sudo apt install -y shellcheck
+
+script:
+  - shfmt bin/*.sh
+  - shellcheck bin/*.sh
