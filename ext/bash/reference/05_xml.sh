@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# リダイレクトして取り出す構文をわたすのか...
-# 取得対象はファイルからしか指定できないんかなぁ...
-echo 'cat /sample/food/name/@language' |
-  xmllint --shell 05_sample.xml

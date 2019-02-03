@@ -1,19 +1,6 @@
 # 概要
 
-[![Build Status](https://travis-ci.org/jiro4989/scripts.svg?branch=master)](https://travis-ci.org/jiro4989/scripts)
-
-自作のスクリプト管理リポジトリ。
-
-## ext
-
-拡張子別のスクリプト。
-メモ書き程度のものが大半で、実用性があるかも不明。
-見直すことはほとんどない。
-
-## bin
-
-$HOME/binにシンボリックリンクしてPATHを通して使う前提。
-extと違って日常的に使う可能性のあるものだけを管理する。
+砂場。書捨てコードの積もる場所。
 
 ### play_game
 
