@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  base:
+    build: .
+    container_name: eralchemy
+      - "./er:/work"
+    entrypoint:
+      - eralchemy -i example.er -o example.png
