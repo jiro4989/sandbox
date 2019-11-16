@@ -1,9 +1,10 @@
 version: '3.7'
 
 services:
-  base:
-    build: .
-    container_name: eralchemy
-      - "./er:/work"
-    entrypoint:
-      - eralchemy -i example.er -o example.png
+  mysql:
+    image: mysql
+    volumes:
+      - "./sql:/docker-entrypoint-initdb.d"
+    environment:
+      MYSQL_DATABASE: chat
+      MYSQL_ROOT_PASSWORD: root
