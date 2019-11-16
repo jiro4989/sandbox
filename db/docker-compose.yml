@@ -4,7 +4,8 @@ services:
   mysql:
     image: mysql
     volumes:
-      - "./sql:/docker-entrypoint-initdb.d"
+      - "./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "./sql:/sql"
     environment:
       MYSQL_DATABASE: chat
       MYSQL_ROOT_PASSWORD: root
