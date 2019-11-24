@@ -1,0 +1,11 @@
+tails xs :=
+  matchAll xs as list something with
+  | _ ++ $ts
+  -> ts
+
+tails xs :=
+  matchAll xs as list something with
+  loop $i (1, $n) ($x_i :: ...) _
+  -> map (\i -> x_i) [i..n]
+
+tails [1,2,3,4]

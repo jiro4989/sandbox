@@ -4,4 +4,4 @@ services:
   egison:
     build: .
     volumes:
-      - ".:/work"
+      - "./src:/work"

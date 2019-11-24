@@ -1,0 +1,7 @@
+unique xs :=
+  matchAllDFS xs as list eq with
+  | {@ ++ $x :: _,
+     !(_ ++ #x :: _)}
+  -> x
+
+unique [1,2,3,2,4]

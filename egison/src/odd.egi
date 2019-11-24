@@ -1,0 +1,6 @@
+odd xss :=
+  matchAll xss as list integer with
+  | (= $x 2)
+  -> x
+
+odd [1,2,3,4,5,6]

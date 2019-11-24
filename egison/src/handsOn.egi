@@ -1,0 +1,89 @@
+--
+-- tails
+--
+
+tails xs :=
+  matchAll xs as list something with
+  | __1__
+  -> ts
+
+tails [1,2,3,4]
+-- [[1, 2, 3, 4], [2, 3, 4], [3, 4], [4], []]
+
+--
+-- equalMultiset
+--
+
+equalMultiset xs ys :=
+  match (xs, ys) as (list eq, multiset eq) with
+  | ([], [])
+  -> True
+  | __1__
+  -> equalMultiset xs' ys'
+  | _
+  -> False
+
+equalMultiset [1,1,2] [2,1,1]
+-- True
+
+equalMultiset [1,1,2] [1,2,2]
+-- False
+
+--
+-- equalMultiset (Advanced)
+--
+
+equalMultiset' xs ys :=
+  match (xs, ys) as (list eq, multiset eq) with
+  | __2__
+  -> True
+  | _
+  -> False
+
+equalMultiset' [1,1,2] [2,1,1]
+-- True
+
+equalMultiset' [1,1,2] [1,2,2]
+-- False
+
+--
+-- Poker with Joker
+--
+
+suit := algebraicDataMatcher
+  | spade
+  | heart
+  | club
+  | diamond
+
+card := matcher
+  | card $ $ as (suit, mod 13) with 
+    | Card $s $n -> [(s, n)]
+    | Joker -> __1__
+  | $ as something with
+    | $tgt -> [tgt]
+
+poker cs :=
+  match cs as multiset card with
+  | card $s $n :: card #s #(n-1) :: card #s #(n-2) :: card #s #(n-3) :: card #s #(n-4) :: _
+    -> "Straight flush"
+  | card _ $n :: card _ #n :: card _ #n :: card _ #n :: _ :: []
+    -> "Four of a kind"
+  | card _ $m :: card _ #m :: card _ #m :: card _ $n :: card _ #n :: []
+    -> "Full house"
+  | card $s _ :: card #s _ :: card #s _ :: card #s _ :: card #s _ :: []
+    -> "Flush"
+  | card _ $n :: card _ #(n-1) :: card _ #(n-2) :: card _ #(n-3) :: card _ #(n-4) :: []
+    -> "Straight"
+  | card _ $n :: card _ #n :: card _ #n :: _ :: _ :: []
+    -> "Three of a kind"
+  | card _ $m :: card _ #m :: card _ $n :: card _ #n :: _ :: []
+    -> "Two pair"
+  | card _ $n :: card _ #n :: _ :: _ :: _ :: []
+    -> "One pair"
+  | _ :: _ :: _ :: _ :: _ :: [] -> "Nothing"
+
+poker [Card Spade 5, Card Spade 6, Joker, Card Spade 8, Card Spade 9]
+-- "Straight flush"
+poker [Card Spade 5, Card Diamond 5, Joker, Card Club 5, Card Heart 7]
+-- "Full house"

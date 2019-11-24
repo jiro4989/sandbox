@@ -1,0 +1,6 @@
+concat xss :=
+  matchAllDFS xss as list (list something) with
+  | _ ++ (_ ++ $x :: _) :: _
+  -> x
+
+concat [[1,2],[3],[],[4,5]]

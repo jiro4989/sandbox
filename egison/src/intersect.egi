@@ -1,0 +1,6 @@
+intersect xs ys :=
+  matchAll (xs, ys) as (multiset eq, multiset eq) with
+  | ($x :: _, #x :: _)
+  -> x
+
+intersect [1,2,3] [2,3,4]

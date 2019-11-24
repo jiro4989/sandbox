@@ -1,0 +1,29 @@
+-- equalMultiset xs ys :=
+--   match (xs, ys) as (list eq, multiset eq) with
+--   | ([], [])
+--   -> True
+--   | ($x :: $xs', #x :: $ys')
+--   -> equalMultiset xs' ys'
+--   | _
+--   -> False
+
+equalMultiset xs ys :=
+  match (xs, ys) as (list eq, multiset eq) with
+  | ([], [])
+  -> True
+  | loop $i (1, _)
+    {($x_i :: @, #x_i :: @),
+    ...}
+    ([], [])
+  -> True
+  | _
+  -> False
+
+equalMultiset [1,1,2] [2,1,1]
+-- true
+
+equalMultiset [2,1,2] [2,2,1]
+-- true
+
+equalMultiset [1,1,2] [1,2,2]
+-- false
