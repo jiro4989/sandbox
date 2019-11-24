@@ -1,0 +1,6 @@
+(*'-')! › for i in go nim; do echo "== $i =="; time ./${i}fib 1000000 > /dev/null; done
+== go ==
+./${i}fib 1000000 > /dev/null  10.14s user 0.65s system 126% cpu 8.534 total
+== nim ==
+./${i}fib 1000000 > /dev/null  36.50s user 0.09s system 99% cpu 36.774 total
+
