@@ -9,6 +9,10 @@ proc createDom(): VNode =
       proc onkeyup(ev: Event, n: VNode) =
         echo "onkeyup"
         t = $n.value
+    textarea(value = t):
+      proc onkeyup(ev: Event, n: VNode) =
+        echo "onkeyup"
+        t = $n.value
     button:
       text "Press"
       proc onclick(ev: Event, n: VNode) =
