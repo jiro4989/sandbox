@@ -3,6 +3,11 @@ import karax / [kbase, vdom, kdom, vstyles, karax, karaxdsl, jdict, jstrutils, j
 var
   t: string
 
+proc cb(httpStatus: int, response: cstring) =
+  echo response
+  echo "NG"
+  t = "callback"
+
 proc createDom(): VNode =
   result = buildHtml(tdiv):
     input(value = t):
@@ -18,6 +23,9 @@ proc createDom(): VNode =
       proc onclick(ev: Event, n: VNode) =
         echo "clicked"
         t = "clicked"
+        ajaxGet("https://ja.wikipedia.org/wiki/Nim",
+          headers = @[],
+          cont = cb)
     text t
 
 setRenderer createDom
