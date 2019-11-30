@@ -11,3 +11,6 @@ vtodo.bat
 /general/scrape.sh
 *.jar
 special/redhat.html
+
+nim/karax_test/karax/
+nim/karax_test/public/karax_test.js
