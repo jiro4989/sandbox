@@ -10,6 +10,12 @@ proc cb(httpStatus: int, response: cstring) =
 
 proc createDom(): VNode =
   result = buildHtml(tdiv):
+    h1: text t
+    h2: text t
+    h3: text t
+    h4: text t
+    h5: text t
+    h6: text t
     input(value = t):
       proc onkeyup(ev: Event, n: VNode) =
         echo "onkeyup"
