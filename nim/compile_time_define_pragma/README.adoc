@@ -1,0 +1,19 @@
+= compile_time_define_pragma
+
+コンパイル時にコマンドラインオプションから値を書き換えるプラグマ。
+
+https://nim-lang.org/docs/manual.html#implementation-specific-pragmas-compile-time-define-pragmas[compile
+time define pragmas - Nim manual]
+
+以下は実行結果。
+
+[source,bash]
+----
+$ ./run.sh
+num  =  1,     s  =  test,   b  =  true
+num  =  9999,  s  =  test,   b  =  true
+num  =  1,     s  =  hello,  b  =  true
+num  =  1,     s  =  test,   b  =  false
+num  =  255,   s  =  world,  b  =  false
+----
+
