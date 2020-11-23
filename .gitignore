@@ -15,3 +15,4 @@ special/redhat.html
 nim/karax_test/karax/
 nim/karax_test/public/karax_test.js
 nim/karax_file/public/karax_file.js
+*.class
