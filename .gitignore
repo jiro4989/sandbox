@@ -1,18 +1,7 @@
-scenebuilder-all-8.3.0-all.jar
-.config
-/input/rss.txt
-/img/diff/
-/img/out/
 *.png
-vtodo.bat
-/special/tmp/
-/special/ipinfos*
-/special/ips.txt
-/general/scrape.sh
 *.jar
-special/redhat.html
+*.class
 
 nim/karax_test/karax/
 nim/karax_test/public/karax_test.js
 nim/karax_file/public/karax_file.js
-*.class
