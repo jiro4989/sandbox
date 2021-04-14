@@ -1,0 +1,20 @@
+/\n/{ lval.l++; lval.c++ }
+/./{ lval.c++ }
+//
+package main
+
+import (
+  "fmt"
+  "os"
+)
+
+type yySymType struct {
+  l, c int
+}
+
+func main() {
+  fmt.Println("Enter text and press 'Ctrl-D'")
+  v := new(yySymType)
+  NewLexer(os.Stdin).Lex(v)
+  fmt.Printf("%d %d\n", v.l, v.c)
+}

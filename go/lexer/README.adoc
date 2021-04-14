@@ -1,0 +1,9 @@
+= lexer
+
+GoでLexerを作りたいけれど、コード生成してくれるツールが存在するので試す。
+
+以下のツールを使う。
+
+https://github.com/blynn/nex
+
+make lc1 で実行する。
