@@ -11,3 +11,8 @@ lc2:
 	nex $@.nex
 	goyacc -o $@.tab.go $@.y
 	go run $@.nn.go $@.tab.go
+
+lc3:
+	nex $@.nex
+	goyacc -o $@.tab.go $@.y
+	go run $@.nn.go $@.tab.go
