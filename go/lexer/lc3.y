@@ -1,22 +1,46 @@
 %{
 package main
 
-import "fmt"
-
 type Token struct {
   lit string
 }
 
-type StatementVarDef struct {
-  VarName string
-  Expr    Expression
+type Stmt interface {
+  statement()
 }
+
+type StmtExpr struct {
+  Expr    Expr
+}
+
+type StmtVarDef struct {
+  VarName string
+  Expr    Expr
+}
+
+func (x *StmtExpr) statement() {}
+func (x *StmtVarDef) statement() {}
+
+type Expr interface {
+  expression()
+}
+
+type ExprNumber struct {
+  Lit string
+}
+
+type ExprIdent struct {
+  Lit string
+}
+
+func (x *ExprNumber) expression() {}
+func (x *ExprIdent) expression() {}
 %}
 
 %union {
-  stmts []Statement
-  stmt  Statement
-  expr  Expression
+  stmts []Stmt
+  stmt  Stmt
+  expr  Expr
   tok   Token
 }
 
@@ -29,25 +53,29 @@ type StatementVarDef struct {
 stmt
     : expr
     {
-        $$ = &StatementExpression{ Expr: $1 }
+        $$ = &StmtExpr{ Expr: $1 }
     }
     | VAR IDENT '=' expr
     {
-        $$ = &StatementVarDef{ VarName: $2.lit, Expr: $4 }
+        $$ = &StmtVarDef{ VarName: $2.lit, Expr: $4 }
     }
 
 stmts
-    : stmt
-    | stmts stmt
+    :
+    { $$ = nil }
+    | stmt stmts
+    {
+        $$ = append([]Stmt{$1}, $2...)
+    }
 
 expr
     : NUMBER
     {
-        $$ = &ExpressionNumber{ Expr: $1.lit }
+        $$ = &ExprNumber{ Lit: $1.lit }
     }
     | IDENT
     {
-        $$ = &ExpressionIdent{ Expr: $1.lit }
+        $$ = &ExprIdent{ Lit: $1.lit }
     }
 
 %%
