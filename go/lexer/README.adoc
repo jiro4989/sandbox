@@ -12,6 +12,8 @@ https://github.com/blynn/nex
 
 === word_count
 
+nex
+
 以下を実行して好きな文字を入力する。
 入力を終えたくなったら Ctrl-D を押す。
 入力された文字数と行数を出力してくれる。
@@ -23,6 +25,8 @@ word_count/app
 ----
 
 === reverse_polish_notation_calc
+
+nex
 
 逆ポーランド記法
 
