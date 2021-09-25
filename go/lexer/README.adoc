@@ -10,7 +10,7 @@ https://github.com/blynn/nex
 
 == 動かし方
 
-=== lc1
+=== word_count
 
 以下を実行して好きな文字を入力する。
 入力を終えたくなったら Ctrl-D を押す。
@@ -18,15 +18,19 @@ https://github.com/blynn/nex
 
 [source,bash]
 ----
-make lc1
+make word_count/app
+word_count/app
 ----
 
-=== lc2
+=== reverse_polish_notation_calc
+
+逆ポーランド記法
 
 以下を実行して `数字 数字 演算子` と入力して二回改行する。
 計算結果を出力してくれる。
 
 [source,bash]
 ----
-make lc2
+make reverse_polish_notation_calc/app
+reverse_polish_notation_calc/app
 ----
