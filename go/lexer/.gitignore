@@ -1,3 +1,6 @@
 *.output
 *.nn.go
 *.tab.go
+*/*
+!*/*.*
+!Makefile
