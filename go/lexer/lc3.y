@@ -38,13 +38,11 @@ func (x *ExprIdent) expression() {}
 %}
 
 %union {
-  stmts []Stmt
   stmt  Stmt
   expr  Expr
   tok   Token
 }
 
-%type<stmts> stmts
 %type<stmt>  stmt
 %type<expr>  expr
 %token<tok>  IDENT NUMBER VAR
@@ -58,14 +56,6 @@ stmt
     | VAR IDENT '=' expr
     {
         $$ = &StmtVarDef{ VarName: $2.lit, Expr: $4 }
-    }
-
-stmts
-    :
-    { $$ = nil }
-    | stmt stmts
-    {
-        $$ = append([]Stmt{$1}, $2...)
     }
 
 expr
