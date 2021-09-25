@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-var keywords = map[string]int {
+var keywords = map[string]int{
 	"var": 1,
 }
 
