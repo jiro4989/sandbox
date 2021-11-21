@@ -1,0 +1,21 @@
+@startuml
+
+actor User as u
+package 入出力インタフェース {
+  [キーボード] as k
+  [ディスプレイ] as ui
+}
+
+[キー入力待ち無限ループ] as t
+[Slot object] as s
+[画面描画goroutine] as g
+
+u -down-> k : キー入力
+t -up-> k : キー入力イベントの取得
+t -down-> s : データ更新
+
+g -down-> s : データ取得
+g -up-> ui : 画面更新
+ui -up-> u : 画面表示
+
+@enduml
