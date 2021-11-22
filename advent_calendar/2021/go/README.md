@@ -31,10 +31,11 @@ $ ls -lah sample_cmd
 
 [slotchmod](https://github.com/jiro4989/slotchmod)というコマンドを作りました。
 
-- TODO
-- TODO
+![demo.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/69665/4cfe045b-7ca7-af0e-d26f-2f4cede07443.gif)
 
-まさにスロットですね。
+![demo2.gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/69665/e0ae4ec8-dd74-81ad-c331-81aff635add1.gif)
+
+まさにスロットですね。Enterキーを押すと回転してるスロットが停止します。
 
 ファイルパーミッションを変更するという地味な作業が、
 ドキドキハラハラなゲームに早変わりしました。
@@ -46,7 +47,36 @@ $ ls -lah sample_cmd
 処理としては、「画面描画用のgoroutine」と「キー入力待ちの無限ループ」という
 2つの処理が並列に動作して機能を実現しています。
 
-- TODO
+以下はデータ更新と取得の関係性を表したUML図です。PlantUMLで書きました。
+
+```plantuml
+@startuml
+
+actor User as u
+package 入出力インタフェース {
+  [キーボード] as k
+  [ディスプレイ] as ui
+}
+
+[キー入力待ち無限ループ] as t
+[Slot object] as s
+[画面描画goroutine] as g
+
+u -down-> k : キー入力
+t -up-> k : キー入力イベントの取得
+t -down-> s : データ更新
+
+g -down-> s : データ取得
+g -up-> ui : 画面更新
+ui -up-> u : 画面表示
+
+@enduml
+```
+
+goroutineを起動している処理は部分の処理の抜粋は以下です。
+
+まずSlot object(以降Slot)を初期化し、termboxの初期化処理を行います。
+次に画面描画goroutineを起動し、キー入力待ちの無限ループに入ります。
 
 ```main.go
 // 省略
@@ -105,6 +135,12 @@ func waitKeyInput(s *Slot) {
     }
 }
 ```
+
+Slotのフィールドと関数は以下のようになっています。
+
+現在選択中のスロットを`currentSlotIndex`というフィールドで管理しています。
+`currentSlotIndex`はキー入力のEnterで1ずつインクリメントされ、値が2を超えるとSlotは終了状態に変化します。
+Slotが終了状態になると、キー入力待ち無限ループもループを脱出し、Slotの結果を踏まえてファイルパーミッションを更新します。
 
 ```slot.go
 const (
@@ -185,6 +221,9 @@ func (s *Slot) IntervalTime() int {
 }
 ```
 
+画面描画goroutineが呼び出している処理はこんな感じです。
+愚直に文字列を組み立てているだけで、特筆することはありません。
+
 ```view.go
 // 省略
 
@@ -229,15 +268,25 @@ func drawSimple(slots [3]int, idx, pv, nv int) {
 }
 ```
 
-# おまけ
+# ハッピーになれる機能
 
-3つ揃うと「ビンゴ」と出してくれます。
+3つ揃うと「BINGO🎉」と出してくれます。
 
-- TODO
+![bingo.PNG](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/69665/a20bec62-d59c-a7cd-55da-256146c2da10.png)
 
-集中しっぱなしで神経を使う本番作業にささやかなお祝いメッセージが届きます。
-それが意図したパーミッションなのかどうかは知りません。
+集中しっぱなしで神経を使う本番作業にささやかなお祝いメッセージをお届けしてくれます。
+これでハッピー。
+
+それが作業者の意図したパーミッションなのかどうかはslotchmodの関心事ではありません。
 
 # まとめ
 
-TODO
+以下の内容を書きました。
+
+- ファイルパーミッションでスロットするコマンドラインツールを作りました
+  - ライブラリには termbox-go を使用しています
+  - 画面描画とキー入力待ちの2つの処理を並列で動かして機能を実現しています
+  - 数字が3つ揃うと「BINGO🎉」と出してくれます
+- 自己責任で使いましょう
+
+以上です。
