@@ -8,8 +8,8 @@
   "rangeStrategy": "pin",
   "packageRules": [
     {
-      "paths": ["npm/**"],
-      "packageNames": ["eslint"]
+      "matchPaths": ["npm/**"],
+      "matchPackageNames": ["^eslint"]
     }
   ]
 }
