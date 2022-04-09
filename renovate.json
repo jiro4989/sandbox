@@ -6,10 +6,5 @@
     "enabled": true
   },
   "rangeStrategy": "pin",
-  "packageRules": [
-    {
-      "matchPaths": ["npm/**"],
-      "matchPackageNames": ["^eslint"]
-    }
-  ]
+  "packageRules": []
 }
