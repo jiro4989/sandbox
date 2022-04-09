@@ -6,5 +6,9 @@
     "enabled": true
   },
   "rangeStrategy": "pin",
-  "packageRules": []
+  "packageRules": [
+    {
+      "paths": ["npm/**"]
+    }
+  ]
 }
