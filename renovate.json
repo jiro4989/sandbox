@@ -2,9 +2,6 @@
   "extends": ["config:base"],
   "timezone": "Asia/Tokyo",
   "enabledManagers": ["npm"],
-  "lockFileMaintenance": {
-    "enabled": true
-  },
   "rangeStrategy": "pin",
   "packageRules": [
     {
