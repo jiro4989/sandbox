@@ -6,17 +6,5 @@
     "enabled": true
   },
   "rangeStrategy": "pin",
-  "packageRules": [
-    {
-      "matchPackagePatterns": ["*"]
-    },
-   {
-      "matchDepTypes": ["dependencies"],
-      "groupName": "dependencies"
-    },
-    {
-      "matchDepTypes": ["devDependencies"],
-      "groupName": "devDependencies"
-    }
-  ]
+  "packageRules": []
 }
