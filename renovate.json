@@ -1,14 +1,11 @@
 {
   "extends": ["config:base"],
   "timezone": "Asia/Tokyo",
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "enabledManagers": ["npm"],
   "rangeStrategy": "pin",
   "packageRules": [
-    {
-      "paths": ["npm/package.json"],
-      "lockFileMaintenance": {
-        "enabled": true
-      }
-    }
   ]
 }
