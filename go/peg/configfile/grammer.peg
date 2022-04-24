@@ -1,0 +1,20 @@
+package main
+
+type Parser Peg {
+  ParserFunc
+}
+
+root <- pair+
+
+pair <- space key space '=' space value space delimiter
+
+key   <- <[a-zA-Z] [-_a-zA-Z0-9]*> { p.pushKey(text) }
+value <- atom
+
+atom   <- bool / int / string
+string <- '"' <('\\' '"' / [^"])*> '"' { p.pushString(text) }
+int    <- <'0' / [1-9] [0-9]*>         { p.pushInt(text) }
+bool   <- <'true' / 'false'>           { p.pushBool(text) }
+
+space     <- (' ' / '　' / '\t')*
+delimiter <- '\n' / ';'

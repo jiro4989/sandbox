@@ -8,3 +8,5 @@ nim/karax_file/public/karax_file.js
 */node_modules/
 
 npm/.envrc
+go/peg/configfile/configifle
+go/peg/configfile/grammer.peg.go
