@@ -1,5 +1,5 @@
 import ecs = require('aws-cdk-lib/aws-ecs');
-import ecs_patterns = require('aws-cdk-lib/aws-ecs-patterns');
+import ecsPatterns = require('aws-cdk-lib/aws-ecs-patterns');
 import ec2 = require('aws-cdk-lib/aws-ec2');
 import cdk = require('aws-cdk-lib');
 
@@ -12,21 +12,15 @@ export class AwscdkStack extends cdk.Stack {
     const cluster = new ecs.Cluster(this, 'fargate-service-autoscaling', { vpc });
 
     // Create Fargate Service
-    const fargateService = new ecs_patterns.NetworkLoadBalancedFargateService(this, 'sample-app', {
-      cluster,
-      taskImageOptions: {
-        image: ecs.ContainerImage.fromRegistry("amazon/amazon-ecs-sample")
-      },
-    });
+    const service = new ecsPatterns.QueueProcessingFargateService(this, 'service', {
+      vpc,
+      memoryLimitMiB: 512,
+      image: ecs.ContainerImage.fromRegistry('test'),
+      maxReceiveCount: 42,
+      retentionPeriod: cdk.Duration.days(7),
+      visibilityTimeout: cdk.Duration.minutes(5),
+    })
 
-    // Setup AutoScaling policy
-    const scaling = fargateService.service.autoScaleTaskCount({ maxCapacity: 2 });
-    scaling.scaleOnCpuUtilization('CpuScaling', {
-      targetUtilizationPercent: 50,
-      scaleInCooldown: cdk.Duration.seconds(60),
-      scaleOutCooldown: cdk.Duration.seconds(60)
-    });
-
-    new cdk.CfnOutput(this, 'LoadBalancerDNS', { value: fargateService.loadBalancer.loadBalancerDnsName });
+    // new cdk.CfnOutput(this, 'LoadBalancerDNS', { value: fargateService.loadBalancer.loadBalancerDnsName });
   }
 }
