@@ -13,5 +13,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `cdk diff`        compare deployed stack with current state
 * `cdk synth`       emits the synthesized CloudFormation template
 
+## 関連
 
-https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/ec2-instance/lib/ec2-cdk-stack.ts
+- [サンプルコード](https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/ec2-instance/lib/ec2-cdk-stack.ts)
+- [CDKインポートの実力はどうなのか？　〜我々調査隊はアマゾンの奥地へと向かった〜](https://tech.nri-net.com/entry/how_about_cdk_import)
